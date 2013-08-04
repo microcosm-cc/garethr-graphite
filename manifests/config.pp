@@ -30,7 +30,7 @@ class graphite::config {
   }
 
   exec { 'init-db':
-    command   => 'python manage.py syncdb --noinput',
+    command   => '/usr/bin/python manage.py syncdb --noinput',
     cwd       => '/opt/graphite/webapp/graphite',
     creates   => '/opt/graphite/storage/graphite.db',
     subscribe => File['/opt/graphite/storage'],
@@ -66,7 +66,7 @@ class graphite::config {
   apache::vhost { 'graphite':
     priority => '10',
     port     => $port,
-    template => 'graphite/virtualhost.conf',
+    # custom_fragment => 'graphite/virtualhost.conf',
     docroot  => '/opt/graphite/webapp',
     logroot  => '/opt/graphite/storage/log/webapp/',
   }

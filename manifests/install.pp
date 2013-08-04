@@ -17,13 +17,15 @@ class graphite::install {
   }
 
   exec { 'install-carbon':
-    command => 'pip install carbon',
+    command => '/usr/bin/pip install carbon; echo $?',
     creates => '/opt/graphite/lib/carbon',
+    require => Package['python-pip'],
   }
 
   exec { 'install-graphite-web':
-    command => 'pip install graphite-web',
+    command => '/usr/bin/pip install graphite-web',
     creates => '/opt/graphite/webapp/graphite',
+    require => Package['python-pip'],
   }
 
   package { 'whisper':

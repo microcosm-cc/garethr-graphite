@@ -66,7 +66,7 @@ class graphite::config {
   apache::vhost { 'graphite':
     priority => '10',
     port     => $port,
-    # custom_fragment => 'graphite/virtualhost.conf',
+    template => 'graphite/virtualhost.conf',
     docroot  => '/opt/graphite/webapp',
     logroot  => '/opt/graphite/storage/log/webapp/',
   }
